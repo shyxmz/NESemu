@@ -33,13 +33,13 @@ public:
     void clock(); // Simulates one clock cycle
 
     // To implement the step-by-step execution we include the complete() function 
-    bool complete() const; // Tells if the current instruction has finished execution
+    bool complete(); // Tells if the current instruction has finished execution
 
     // Linking CPU to the communication bus 
     void ConnectBus(Bus* n) { bus = n; }
 
     // To get human-readable code form machine code 
-    map<uint16_t, string> disassemble(uint16_t nStart, uint16_t nStop) const;
+    map<uint16_t, string> disassemble(uint16_t nStart, uint16_t nStop);
 
     // Flags of the status register 
     enum FLAGS6502 {
@@ -54,7 +54,7 @@ public:
     };
 
     // Functions to access the status registers 
-    uint8_t GetFlag(FLAGS6502 f) const;
+    uint8_t GetFlag(FLAGS6502 f);
     void SetFlag(FLAGS6502 f, bool v);
 
     // Assistive variables 
@@ -68,7 +68,7 @@ public:
 
     // Linkage to communication bus 
     Bus* bus = nullptr;
-    uint8_t read(uint16_t a) const; // Reads 8bit data from 16 bit address 
+    uint8_t read(uint16_t a); // Reads 8bit data from 16 bit address 
     void write(uint16_t a, uint8_t d); // Write 8bit data from a 16 bit address 
 
     uint8_t fetch(); // Fetch the current instruction
